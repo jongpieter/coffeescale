@@ -10,6 +10,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{D31CA2
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeightToTableStorageWorkerRole", "..\WeightToTableStorageWorkerRole\WeightToTableStorageWorkerRole.csproj", "{15B3E0D2-6217-493A-A690-158C497F5318}"
+EndProject
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "ScaleWorker", "..\ScaleWorker\ScaleWorker.ccproj", "{5617E464-9120-4CBF-B205-1DBFBD817490}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +24,14 @@ Global
 		{A0AD6504-FA80-47C1-B2EB-157C2AE8EC83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0AD6504-FA80-47C1-B2EB-157C2AE8EC83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0AD6504-FA80-47C1-B2EB-157C2AE8EC83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15B3E0D2-6217-493A-A690-158C497F5318}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15B3E0D2-6217-493A-A690-158C497F5318}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15B3E0D2-6217-493A-A690-158C497F5318}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15B3E0D2-6217-493A-A690-158C497F5318}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5617E464-9120-4CBF-B205-1DBFBD817490}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5617E464-9120-4CBF-B205-1DBFBD817490}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5617E464-9120-4CBF-B205-1DBFBD817490}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5617E464-9120-4CBF-B205-1DBFBD817490}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
