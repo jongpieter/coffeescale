@@ -2,7 +2,7 @@ using System;
 
 namespace Coffee.Core
 {
-	public class CoffeeDataChangedEvent
+	public class CoffeeDataChangedEvent : ICoffeeDataChangedEvent
 	{
 		private readonly byte[] data;
 
