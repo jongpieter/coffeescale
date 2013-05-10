@@ -1,0 +1,9 @@
+{
+    "name": "scaleserver",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "node-hid": "0.2.2",
+        "azure": "0.7.2"
+    }
+}
