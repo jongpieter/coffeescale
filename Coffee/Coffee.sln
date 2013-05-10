@@ -10,9 +10,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{D31CA2
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeightToTableStorageWorkerRole", "..\WeightToTableStorageWorkerRole\WeightToTableStorageWorkerRole.csproj", "{15B3E0D2-6217-493A-A690-158C497F5318}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeightToTableStorageWorkerRole", "WeightToTableStorageWorkerRole\WeightToTableStorageWorkerRole.csproj", "{15B3E0D2-6217-493A-A690-158C497F5318}"
 EndProject
-Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "ScaleWorker", "..\ScaleWorker\ScaleWorker.ccproj", "{5617E464-9120-4CBF-B205-1DBFBD817490}"
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "ScaleWorker", "ScaleWorker\ScaleWorker.ccproj", "{5617E464-9120-4CBF-B205-1DBFBD817490}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
