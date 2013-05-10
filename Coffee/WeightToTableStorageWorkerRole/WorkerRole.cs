@@ -31,8 +31,7 @@ namespace WeightToTableStorageWorkerRole
 					if (receivedMessage != null)
 					{
 						var dataChangedEvent = DataChangedEvent.Deserialize(receivedMessage);
-						var entity = new DataChangedEventToScaleLogEntity(dataChangedEvent, receivedMessage.EnqueuedTimeUtc).ToEntity();
-						table.Execute(TableOperation.Insert(entity));
+						AddToTableStorage(dataChangedEvent, receivedMessage);						
 
 						// Process the message
 						Trace.WriteLine("Processed", receivedMessage.SequenceNumber.ToString());
@@ -59,6 +58,12 @@ namespace WeightToTableStorageWorkerRole
 					}
 				}
 			}
+		}
+
+		private void AddToTableStorage(DataChangedEvent dataChangedEvent, BrokeredMessage receivedMessage)
+		{
+			var entity = new DataChangedEventToScaleLogEntity(dataChangedEvent, receivedMessage.EnqueuedTimeUtc).ToEntity();
+			table.Execute(TableOperation.Insert(entity));
 		}
 
 		public override bool OnStart()

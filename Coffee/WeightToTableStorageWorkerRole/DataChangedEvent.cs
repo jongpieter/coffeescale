@@ -9,8 +9,6 @@ namespace WeightToTableStorageWorkerRole
 		public Device Device { get; set; }
 		public byte[] Data { get; set; }
 
-		public int Weight { get { return Data[4] + Data[5] * 256; } }
-
 		public static DataChangedEvent Deserialize(BrokeredMessage receivedMessage)
 		{
 			using (var reader = new StreamReader(receivedMessage.GetBody<Stream>()))
