@@ -4,6 +4,7 @@
     "private": true,
     "dependencies": {
         "node-hid": "0.2.2",
-        "azure": "0.7.2"
+        "azure": "0.7.2",
+        "CBuffer": "0.1.4"
     }
 }

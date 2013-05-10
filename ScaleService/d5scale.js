@@ -1,6 +1,7 @@
 var util = require('util');
 var HID = require('node-hid');
 var events = require('events');
+var CBuffer = require('CBuffer');
 
 function DeviceController() {
 	var devices = HID.devices(2338, 32773);	
@@ -17,11 +18,22 @@ function DeviceController() {
 	for(var i = 0; i < devices.length; i++)
 	{
 		var hid = new HID.HID(devices[i].path);
-		hid.read(this.deviceData.bind(this, { hid: hid, info: devices[i], oldData: "" }));
+		var buffer = new CBuffer(3);		
+
+		hid.read(this.deviceData.bind(this, { hid: hid, info: devices[i], oldWeights: buffer, lastSentWeight: -1 }));
 	}
 }
 
 util.inherits(DeviceController, events.EventEmitter);
+
+var getWeight = function(data) {
+
+	var weight = data[4] + (data[5] * 256)
+	if(data[2] == 11)
+		return Math.round(weight * 28.3495 / 10);
+
+	return weight;
+} 
 
 DeviceController.prototype.deviceData = function (device, error, data) {
 
@@ -29,14 +41,21 @@ DeviceController.prototype.deviceData = function (device, error, data) {
 	{
 		console.log(error);		
 		return;
+	}	
+
+	var message = { 
+		serialNumber: device.info.serialNumber,
+		weight: getWeight(data),
+		status: data[1]
+	};
+
+	if(device.oldWeights.every(function(val) { return Math.abs(message.weight - val) <= 2; }) && Math.abs(message.weight - device.lastSentWeight) > 2 )
+	{		
+		this.emit('dataChanged', message);			
+		device.lastSentWeight = message.weight;
 	}
-		
-	if(device.oldData.toString() !== data.toString())
-	{
-		device.oldData = data.toString();
-		this.emit('dataChanged', { device : { serialNumber: device.info.serialNumber, manufacturer: device.info.manufacturer, product: device.info.product }, data : data });
-	}
-	
+
+	device.oldWeights.push(message.weight);
     device.hid.read(this.deviceData.bind(this, device));
 }
 
