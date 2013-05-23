@@ -46,12 +46,13 @@ DeviceController.prototype.deviceData = function (device, error, data) {
 	var message = { 
 		serialNumber: device.info.serialNumber,
 		weight: getWeight(data),
-		status: data[1]
+		status: data[1],
+		date: new Date()
 	};
 
 	if(device.oldWeights.every(function(val) { return Math.abs(message.weight - val) <= 2; }) && Math.abs(message.weight - device.lastSentWeight) > 2 )
 	{		
-		this.emit('dataChanged', message);			
+		this.emit('dataChanged', message);
 		device.lastSentWeight = message.weight;
 	}
 
