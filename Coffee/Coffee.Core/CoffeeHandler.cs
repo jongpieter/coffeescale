@@ -6,9 +6,9 @@
 		private const decimal NoCoffeeWeight = 2526 + 364;
 		private const decimal OneCoffeeCupWeight = 108.6M;
 
-		public void HandleEvent(ICoffeeDataChangedEvent coffeeDataChangedEvent)
+		public void HandleEvent(CoffeeDataChangedEvent coffeeDataChangedEvent)
 		{
-			if (coffeeDataChangedEvent.WeightInGrams < NoCoffeeWeight)
+			if (coffeeDataChangedEvent.Weight < NoCoffeeWeight)
 			{				
 				if(Status == CoffeeMachineStatus.Unknown)
 					NumberOfCups = 0;
@@ -17,7 +17,7 @@
 			else
 			{
 				Status = CoffeeMachineStatus.PotInMachine;
-				NumberOfCups = (coffeeDataChangedEvent.WeightInGrams - NoCoffeeWeight) / OneCoffeeCupWeight;
+				NumberOfCups = (coffeeDataChangedEvent.Weight - NoCoffeeWeight) / OneCoffeeCupWeight;
 			}
 		}
 

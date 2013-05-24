@@ -39,9 +39,8 @@ namespace WeightToTableStorageWorkerRole
 					if (receivedMessage != null)
 					{
 						var message = DeserializeBrokeredMessage(receivedMessage);
-						var coffeDataChangedEvent = new CoffeeDataChangedEvent(message.Data, message.Device.SerialNumber, receivedMessage.EnqueuedTimeUtc);
-						AddToTableStorage(coffeDataChangedEvent);
-						AddToBlobStorage(coffeDataChangedEvent);
+						AddToTableStorage(message);
+						AddToBlobStorage(message);
 
 						// Process the message
 						Trace.WriteLine("Processed", receivedMessage.SequenceNumber.ToString());
@@ -136,21 +135,21 @@ namespace WeightToTableStorageWorkerRole
 			base.OnStop();
 		}
 
-		public static DataChangedEvent DeserializeBrokeredMessage(BrokeredMessage receivedMessage)
+		public static CoffeeDataChangedEvent DeserializeBrokeredMessage(BrokeredMessage receivedMessage)
 		{
 			using (var reader = new StreamReader(receivedMessage.GetBody<Stream>()))
 			{
-				return JsonConvert.DeserializeObject<DataChangedEvent>(reader.ReadToEnd());
+				return JsonConvert.DeserializeObject<CoffeeDataChangedEvent>(reader.ReadToEnd());
 			}
 		}
 
 		public static ScaleLogEntity ConvertCoffeeDataChangedEventToTableEntity(CoffeeDataChangedEvent coffeeDataChangedEvent)
 		{
-			var entity = new ScaleLogEntity(coffeeDataChangedEvent.TimeOfEvent)
+			var entity = new ScaleLogEntity(coffeeDataChangedEvent.Date)
 			{
-				WeightInGrams = coffeeDataChangedEvent.WeightInGrams,
+				WeightInGrams = coffeeDataChangedEvent.Weight,
 				Status = coffeeDataChangedEvent.Status,
-				SerialNumber = coffeeDataChangedEvent.ScaleSerialNumber
+				SerialNumber = coffeeDataChangedEvent.SerialNumber
 			};
 			return entity;
 		}

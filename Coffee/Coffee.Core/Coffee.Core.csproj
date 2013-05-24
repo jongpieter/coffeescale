@@ -39,9 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CoffeeDataChangedEvent.cs" />
     <Compile Include="CoffeeHandler.cs" />
-    <Compile Include="ICoffeeDataChangedEvent.cs" />
+    <Compile Include="CoffeeDataChangedEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
