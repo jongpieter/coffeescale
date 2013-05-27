@@ -83,7 +83,7 @@ namespace WeightToTableStorageWorkerRole
 		private void AddToTableStorage(CoffeeDataChangedEvent dataChangedEvent)
 		{
 			var entity = ConvertCoffeeDataChangedEventToTableEntity(dataChangedEvent);
-			table.Execute(TableOperation.Insert(entity));
+			table.Execute(TableOperation.InsertOrReplace(entity));
 		}
 
 		public override bool OnStart()
@@ -149,7 +149,7 @@ namespace WeightToTableStorageWorkerRole
 			{
 				WeightInGrams = coffeeDataChangedEvent.Weight,
 				Status = coffeeDataChangedEvent.Status,
-				SerialNumber = coffeeDataChangedEvent.SerialNumber
+				SerialNumber = coffeeDataChangedEvent.SerialNumber				
 			};
 			return entity;
 		}

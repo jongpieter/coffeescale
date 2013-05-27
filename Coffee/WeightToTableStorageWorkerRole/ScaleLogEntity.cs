@@ -9,6 +9,7 @@ namespace WeightToTableStorageWorkerRole
 		{
 			PartitionKey = timeOfEvent.Date.ToString("yyyyMMdd");
 			RowKey = (DateTime.MaxValue.Ticks - DateTime.UtcNow.Ticks).ToString("d19");
+			TimeOfEventUtc = timeOfEvent;
 		}
 
 		public ScaleLogEntity()
@@ -18,5 +19,6 @@ namespace WeightToTableStorageWorkerRole
 		public string SerialNumber { get; set; }
 		public int WeightInGrams { get; set; }
 		public int Status { get; set; }
+		public DateTime TimeOfEventUtc { get; set; }
 	}
 }
