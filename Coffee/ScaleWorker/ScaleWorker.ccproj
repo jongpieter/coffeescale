@@ -37,12 +37,12 @@
     <ServiceConfiguration Include="ServiceConfiguration.Cloud.cscfg" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WeightToTableStorageWorkerRole\WeightToTableStorageWorkerRole.csproj">
-      <Name>WeightToTableStorageWorkerRole</Name>
-      <Project>{15b3e0d2-6217-493a-a690-158c497f5318}</Project>
+    <ProjectReference Include="..\Coffee.WorkerRole\Coffee.WorkerRole.csproj">
+      <Name>Coffee.WorkerRole</Name>
+      <Project>{ce1bde50-ef9b-42fa-91a7-6dc12181615c}</Project>
       <Private>True</Private>
       <RoleType>Worker</RoleType>
-      <RoleName>WeightToTableStorageWorkerRole</RoleName>
+      <RoleName>Coffee.WorkerRole</RoleName>
       <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
     </ProjectReference>
   </ItemGroup>
