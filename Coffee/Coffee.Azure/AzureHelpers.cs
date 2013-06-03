@@ -37,10 +37,10 @@ namespace Coffee.Azure
 		{
 			var storageAccount = GetCloudStorageAccount();
 			var blobClient = storageAccount.CreateCloudBlobClient();
-			var container = blobClient.GetContainerReference("coffee");
+			var container = blobClient.GetContainerReference(containerName);
 			container.CreateIfNotExists();
 			container.SetPermissions(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Container });
-			return container.GetBlockBlobReference("state");
+			return container.GetBlockBlobReference(blobName);
 		}
 
 		private static CloudStorageAccount GetCloudStorageAccount()
