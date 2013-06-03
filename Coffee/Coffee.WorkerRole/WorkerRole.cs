@@ -1,6 +1,7 @@
+using System.Net;
 using Coffee.Azure;
-using Coffee.Workers;
-using Coffee.Workers.AddTableToTableStorage;
+using Coffee.Workers.LogChangesToTableStorage;
+using Coffee.Workers.SaveToBlobStorage;
 
 namespace Coffee.WorkerRole
 {
@@ -10,10 +11,19 @@ namespace Coffee.WorkerRole
 		{
 			var workers = new WorkerEntryPoint[]
 			{
-				new AddTableToTableStorageWorkerRole()
+				new LogChangesToTableStorageWorkerRole(),
+				new SaveToBlobStorageWorkerRole()
 			};
 
 			Run(workers);
+		}
+
+		public override bool OnStart()
+		{
+			// Set the maximum number of concurrent connections 
+			ServicePointManager.DefaultConnectionLimit = 12;		
+
+			return base.OnStart();
 		}
 	}
 }
