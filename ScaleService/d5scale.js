@@ -38,10 +38,7 @@ var getWeight = function(data) {
 DeviceController.prototype.deviceData = function (device, error, data) {
 
 	if(error)
-	{
-		console.log(error);		
-		return;
-	}	
+		throw new Error(error);			
 
 	var message = { 
 		serialNumber: device.info.serialNumber,
