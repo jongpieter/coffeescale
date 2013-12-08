@@ -18,7 +18,7 @@ function DeviceController() {
 	for(var i = 0; i < devices.length; i++)
 	{
 		var hid = new HID.HID(devices[i].path);
-		var buffer = new CBuffer(3);		
+		var buffer = new CBuffer(2);		
 
 		hid.read(this.deviceData.bind(this, { hid: hid, info: devices[i], oldWeights: buffer, lastSentWeight: -1 }));
 	}
